@@ -1,73 +1,71 @@
-# React + TypeScript + Vite
+# INF780-MoviesFrontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend de la aplicación **Movies** desarrollado con React + TypeScript + Vite.
 
-Currently, two official plugins are available:
+> **Materia:** INF780 - Verificación y Validación de Software  
+> **Carrera:** Ingeniería Informática  
+> **Universidad:** Universidad Autónoma Tomás Frías (UATF)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Descripción
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Interfaz web para la gestión de películas (CRUD). Se comunica con una API REST en `http://localhost:3000` mediante un proxy configurado en Vite.
 
-## Expanding the ESLint configuration
+## Requisitos previos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [Node.js](https://nodejs.org/) v18 o superior
+- [npm](https://www.npmjs.com/) v9 o superior
+- El backend de la API corriendo en `http://localhost:3000` (ver repositorio `INF780-MoviesBackend`)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Puesta en marcha
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Clonar el repositorio
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone <url-del-repositorio>
+cd INF780-MoviesFrontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Instalar dependencias
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Iniciar el servidor de desarrollo
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en `http://localhost:5173`.
+
+> Las peticiones a `/movies` son redirigidas automáticamente al backend en `http://localhost:3000`.
+
+## Scripts disponibles
+
+| Comando | Descripción |
+|---|---|
+| `npm run dev` | Inicia el servidor de desarrollo con HMR |
+| `npm run build` | Compila el proyecto para producción |
+| `npm run preview` | Sirve localmente la build de producción |
+| `npm run lint` | Ejecuta ESLint sobre el código fuente |
+
+## Estructura del proyecto
+
+```
+src/
+├── api/            # Cliente HTTP para la API de películas
+├── components/     # Componentes React (MovieCard, MovieForm, Modal)
+├── hooks/          # Custom hooks
+├── types/          # Definiciones de tipos TypeScript
+├── App.tsx         # Componente raíz
+└── main.tsx        # Punto de entrada
+```
+
+## Tecnologías
+
+- [React 19](https://react.dev/)
+- [TypeScript 6](https://www.typescriptlang.org/)
+- [Vite 8](https://vite.dev/)
